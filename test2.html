@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function rep() {
+            let x = Number(document.getElementById('1').value);
+            let y = Number(document.getElementById('2').value);
+            let t = document.getElementById('3').value;
+            let znach;
+
+            if (t === "+") {
+                znach = x + y;
+            }
+            if (t === "-") {
+                znach = x - y;
+            }
+            if (t === "*") {
+                znach = x * y;
+            }
+            if (t === "/" && y !== 0) {
+                znach = x / y;
+            } else if (y === 0) {
+                znach = "Cannot divide by zero";
+            }
+
+            document.getElementById('4').innerText = znach;
+        }
+    </script>
+
+</head>
+<body>
+    <p>Значение 1:</p>
+    <input id="1">
+    <p>Значение 2:</p>
+    <input id="2"><br>
+    Действие:
+    <br>
+    <select id="3">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select> 
+    <br> 
+    <br>
+    <button onclick="rep()">вычислить</button>
+    <br>
+    <p id="4"></p>
+</body>
+</html>
+These changes should fix the errors and make your calculator function properly.
+
+
+
+User
+на русском
+ChatGPT
+Конечно, вот исправленный код на русском:
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документ</title>
+    <script>
+        function rep() {
+            let x = Number(document.getElementById('1').value);
+            let y = Number(document.getElementById('2').value);
+            let t = document.getElementById('3').value;
+            let znach;
+
+            if (t === "+") {
+                znach = x + y;
+            }
+            if (t === "-") {
+                znach = x - y;
+            }
+            if (t === "*") {
+                znach = x * y;
+            }
+            if (t === "/" && y !== 0) {
+                znach = x / y;
+            } else if (y === 0) {
+                znach = "Нельзя делить на ноль";
+            }
+
+            document.getElementById('4').innerText = znach;
+        }
+    </script>
+
+</head>
+<body>
+    <p>Значение 1:</p>
+    <input id="1">
+    <p>Значение 2:</p>
+    <input id="2"><br>
+    Действие:
+    <br>
+    <select id="3">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select> 
+    <br> 
+    <br>
+    <button onclick="rep()">вычислить</button>
+    <br>
+    <p id="4"></p>
+</body>
+</html>
