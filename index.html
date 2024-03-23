@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <script>
+        function start(){
+            let curier = new XMLHttpRequest;
+            curier.onload = result;
+            let url = 'cgi-bin/showbase.py';
+            curier.open('GET', url);
+            curier.send();
+
+        }
+
+        function result(e){
+            let r = e.target.response;
+            let res = JSON.parse(r);
+            document.getElementById('table').innerHTML = res;
+            console.log(r);
+        }
+        function add(){
+            let name  = document.getElementById('name1').value
+            let price = document.getElementById('price').value
+
+            let curier = new XMLHttpRequest;
+            curier.onload = result1;
+            let url = 'cgi-bin/addgoods.py?name='+name+'&price='+price;
+            curier.open('GET', url);
+            curier.send();
+        }
+        function result1(){
+            start();
+
+        }
+        function delete1(){
+            let id1 = Number(document.getElementById('id1').value)
+            let curier = new XMLHttpRequest;
+            curier.onload = result1;
+            let url = 'cgi-bin/delete.py?id1='+id1;
+            curier.open('GET', url);
+            curier.send();
+
+        }
+        function change1(){
+            let id2 = document.getElementById('id2').value
+            let name2 = document.getElementById('name2').value
+            let price2 = document.getElementById('price2').value
+            let curier = new XMLHttpRequest;
+            curier.onload = result1;
+            let url = 'cgi-bin/change1.py?id2='+id2+'&name2='+name2+'&price2='+price2;
+            curier.open('GET', url);
+            curier.send();
+
+        }
+        function max1() {
+            let curier = new XMLHttpRequest;
+            curier.onload = result2;
+            let url = 'cgi-bin/max1.py';
+            curier.open('GET', url);
+            curier.send();
+
+        }
+        function result2(e)
+        {
+            let res = e.target.response;
+            res = JSON.parse(res);
+            document.getElementById('max1').innerHTML = res;
+        }
+        function min1() {
+            let curier = new XMLHttpRequest;
+            curier.onload = result3;
+            let url = 'cgi-bin/min1.py';
+            curier.open('GET', url);
+            curier.send();
+
+        }
+        function result3(e)
+        {
+            let res1 = e.target.response;
+            res1 = JSON.parse(res1);
+            document.getElementById('min1').innerHTML = res1;
+        }
+        let checked_list = [];
+        function checkbox_click(checkbox){
+            
+            if (checkbox.checked == true){
+                checked_list.push(checkbox.id);
+            }
+            else{
+                 let index_id = checked_list.indexOf(checkbox.id);
+                 checked_list.splice(index_id,1);
+            }
+            console.log(checked_list);
+
+        }
+        function basket(){
+            window.open('cgi-bin/show_basket.py&checked_list='+JSON.stringify(checked_list))
+
+        }
+    </script>
+</head>
+<body onload="start()">
+    <p id="table" align = 'center'></p>
+    <p align = 'center'>Наименование   <input type="" id="name1">      Цена  <input type="text" id="price">     <button onclick="add()"> Добавить</button>
+    <p align = 'center'>id <input type="text" id="id1"> <button onclick="delete1()">Удалить</button></p>
+    <p align = 'center'>id <input type="text" id="id2"> name <input type="text" id="name2"> price <input type="text" id="price2"> <button onclick="change1()">Изменить</button></p>
+    <p><button onclick="max1()" id="max1">max(sql)</button></p>
+    <p><button onclick="min1()" id="min1">min(sql)</button></p>
+    <p><button onclick="basket()">корзина</button></p>
+    
+</body>
+</html>
